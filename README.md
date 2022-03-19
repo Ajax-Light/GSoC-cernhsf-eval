@@ -12,4 +12,5 @@
 
 ## Notes
 
-- While I've tested the performance on Linux **inside** a VM, the results were skewed due to the virtualization overhead. Therefore, I used some workarounds to execute the programs on Windows which has direct access to the hardware.
+- While I've tested the performance on Linux **inside** a VM, the results were skewed due to the virtualization overhead. Therefore, my output logs may look different owing to the usage of Windows.
+- I've used Microsoft Visual Studio Profiler instead of `multitime`
