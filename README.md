@@ -12,5 +12,7 @@
 
 ## Notes
 
+- The results of each Exercise have been documented in the *Results.md* file within their respective folders.
+- For Exercise 3 execute: `make && make run` to build and run the dpcpp code.
 - While I've tested the performance on Linux **inside** a VM, the results were skewed due to the virtualization overhead. Therefore, my output logs may look different owing to the usage of Windows.
 - I've used Microsoft Visual Studio Profiler instead of `multitime`
