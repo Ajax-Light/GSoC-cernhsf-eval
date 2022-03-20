@@ -1,0 +1,14 @@
+DPCPP_CXX = dpcpp
+DPCPP_CXXFLAGS = /Zi /EHsc
+DPCPP_LDFLAGS = 
+DPCPP_EXE_NAME = biquad.exe
+DPCPP_SOURCES = biquad.cpp
+
+all:
+	$(DPCPP_CXX) $(DPCPP_CXXFLAGS) -o $(DPCPP_EXE_NAME) $(DPCPP_SOURCES) $(DPCPP_LDFLAGS)
+
+run:
+	$(DPCPP_EXE_NAME)
+
+clean: 
+	del -rf $(DPCPP_EXE_NAME) *.pdb
