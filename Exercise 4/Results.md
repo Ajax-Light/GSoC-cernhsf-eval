@@ -13,7 +13,7 @@ The inital performance snapshot shows 3 main areas of improvement:
 - Low Microarchitecture usage
 - Low Thread-level parallelism
 
-## Hotspot analysis
+## Hotspot Analysis
 
 ![Hotspot](VTune_hs.jpg)
 
@@ -34,8 +34,42 @@ the `.exe` file from VTune. Handling static-linking in Windows is a nightmare :(
 
 ![thread](VTune_th.jpg)
 
-The Threading analysis shows high utilization of locks in tbb.dll hence the
-memory management could be improved.
+The Threading analysis shows high utilization of locks in tbb.dll **(Thread
+Building Blocks)** hence the memory management could be improved.
+
+---
+
+## *The following section documents my Profiling results on a Linux VM*
+
+*Owing to the overhead posed by Virtualization,
+the following analysis may not be completely accurate.*  
+The profiled program is the implementation in Exercise 3 working on a
+`(2500,1)` column vector.
+
+## Performance Snapshot on a Linux VM
+
+![perf Linux](VTune_Linux_ps.jpg)
+
+The code performs well by default. Let's analyse the Hot Spots.
+
+## Hotspot Analysis on a Linux VM
+
+![Hotspot](VTune_Linux_hs.jpg)
+
+We can observe that the intial set-up for the `queue` and `memmove` take up a
+lot of execute time. Since `tbb_parallel_for` executes on the CPU, it shows up
+as a hotspot.
+Memory accesses tend to be a bottle neck in accelerated applications, so the
+most obvious improvement would be to use a GPU backend.
+
+## Threading Analysis on a Linux VM
+
+![thread](VTune_Linux_th.jpg)
+
+We see that the Threads are held waiting by futexes (Fast User-Space Mutexes),
+a synchonization mechanism in the kernel. This may be due to the VM being
+allocated 4 vCPUs in total. We can probably see performance improvements on
+direct hardware.
 
 ## Additional Notes
 
